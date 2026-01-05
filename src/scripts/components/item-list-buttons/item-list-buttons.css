@@ -1,0 +1,16 @@
+.h5p-checklist-item-list-buttons {
+  display: flex;
+  gap: var(--h5p-checklist-theme-spacing-s);
+  container-type: inline-size;
+  user-select: none;
+
+  .button-add-item,
+  .button-add-segment-title {
+    margin: 0;
+
+    &.h5p-theme-plus::before {
+      content: var(--icon-fontawesome-plus, "\f067");
+      font-family: "H5PFontAwesome4", sans-serif;
+    }
+  }
+}

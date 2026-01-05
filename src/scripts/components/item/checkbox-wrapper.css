@@ -1,0 +1,37 @@
+.h5p-checklist-item-checkbox-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: var(--h5p-checklist-theme-spacing-xxs);
+
+  & .h5p-checklist-item-checkbox {
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 600;
+
+    &:before {
+      font-family: "H5PFontAwesome4", sans-serif;
+      margin-inline: calc( var(--h5p-checklist-theme-spacing-xxs) / 2);
+      width: 1.5ch;
+    }
+
+    &:not(.disabled)::before {
+      color: var(--h5p-checklist-theme-text-primary);
+    }
+
+    &.disabled::before {
+      color: var(--h5p-checklist-theme-text-third);
+    }
+
+    &[aria-checked="false"]:before {
+      content: "\f096";
+    }
+
+    &[aria-checked="true"]::before {
+      content: "\f046";
+    }
+  }
+
+  & .h5p-checklist-item-checkbox-label {
+    font-weight: 600;
+  }
+}

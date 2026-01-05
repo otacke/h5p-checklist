@@ -1,0 +1,13 @@
+.h5p-checklist-introduction {
+  font-size: var(--h5p-checklist-theme-font-size-l);
+  color: var(--h5p-checklist-theme-text-primary);
+  font-weight: 600;
+
+  & p:first-child {
+    margin-top: 0;
+  }
+
+  & p:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,7 @@
+.h5p-checklist-message-area {
+  font-size: var(--h5p-checklist-theme-font-size-m);
+
+  &.display-none {
+    display: none;
+  }
+}

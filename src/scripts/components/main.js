@@ -1,0 +1,189 @@
+import Introduction from '@components/introduction/introduction.js';
+import ItemList from '@components/item-list/item-list.js';
+import ItemListButtons from '@components/item-list-buttons/item-list-buttons.js';
+import MessageArea from '@components/message-area/message-area.js';
+import Screenreader from '@services/screenreader.js';
+import { extend } from '@services/util.js';
+import './main.css';
+
+/**
+ * Main checklist wrapper.
+ * @class
+ * @param {object} params Parameters.
+ * @param {object} callbacks Callbacks.
+ * @param {function} [callbacks.onCompleted] Called when checklist is completed.
+ * @param {function} [callbacks.onInteracted] Called on user interaction.
+ * @param {function} [callbacks.onResized] Called when size changes.
+ */
+export default class Main {
+  /**
+   * @class
+   * @param {object} params Parameters.
+   * @param {object} callbacks Callbacks.
+   */
+  constructor(params = {}, callbacks = {}) {
+    this.params = extend({}, params);
+
+    this.callbacks = extend({
+      onCompleted: () => {},
+      onInteracted: () => {},
+      onResized: () => {},
+    }, callbacks);
+
+    this.dom = document.createElement('div');
+    this.dom.classList.add('h5p-checklist-main');
+
+    // TODO: Get from previous state
+    this.wasAnswerGiven = false;
+
+    const introduction = new Introduction({ text: params.introductionText });
+    this.dom.appendChild(introduction.getDOM());
+
+    this.itemList = new ItemList(
+      {
+        items: params.items,
+        dictionary: this.params.dictionary,
+        behavior: {
+          userCanManageItems: params.behaviour.userCanManageItems,
+          userCanManageSegmentTitles: params.behaviour.userCanManageSegmentTitles,
+        },
+      },
+      {
+        onInteracted: () => {
+          this.handleUserInteracted();
+        },
+        onListItemsChanged: () => {
+          this.toggleNoItemsMessage();
+          this.callbacks.onResized();
+        },
+        read: (text) => {
+          Screenreader.read(text);
+        },
+      },
+    );
+
+    this.dom.appendChild(this.itemList.getDOM());
+
+    this.messageArea = new MessageArea();
+    this.dom.appendChild(this.messageArea.getDOM());
+
+    this.itemListButtons = new ItemListButtons({
+      canAddItems: params.behaviour.userCanManageItems,
+      canAddSegmentTitles: params.behaviour.userCanManageSegmentTitles,
+      dictionary: this.params.dictionary,
+    }, {
+      onAddItemRequested: () => {
+        this.itemList.addItem({ type: 'checkable', text: this.params.dictionary.get('l10n.newItem') });
+      },
+      onAddSegmentTitleRequested: () => {
+        this.itemList.addItem({ type: 'segment-title', text: this.params.dictionary.get('l10n.newSegmentTitle') });
+      },
+    });
+    this.dom.appendChild(this.itemListButtons.getDOM());
+
+    // Screenreader for polite screen reading
+    document.body.append(Screenreader.getDOM());
+
+    this.toggleNoItemsMessage();
+  }
+
+  /**
+   * Handle any user interaction.
+   */
+  handleUserInteracted() {
+    this.wasAnswerGiven = true;
+    this.callbacks.onInteracted();
+
+    if (!this.wasCompleted) {
+      this.wasCompleted = this.getScore() >= this.getMaxScore();
+
+      if (this.wasCompleted) {
+        this.callbacks.onCompleted();
+      }
+    }
+  }
+
+  /**
+   * Toggle "no items" message visibility.
+   * @param {boolean} [showMessageRequested] Whether to show the message.
+   */
+  toggleNoItemsMessage(showMessageRequested) {
+    const showMessage = (typeof showMessageRequested === 'boolean') ?
+      showMessageRequested :
+      this.itemList.getLength() === 0;
+
+    this.itemList.toggleVisibility(!showMessage);
+
+    this.messageArea.toggleVisibility(showMessage);
+    this.messageArea.setMessage(showMessage ? this.params.dictionary.get('l10n.noItemsAvailable') : '');
+  }
+
+  /**
+   * Check if an answer was given.
+   * @returns {boolean} True if user interacted.
+   */
+  getAnswerGiven() {
+    return this.wasAnswerGiven;
+  }
+
+  /**
+   * Get current state.
+   * @returns {object} Current state.
+   */
+  getCurrentState() {
+    return {
+      itemList: this.itemList.getCurrentState(),
+    };
+  }
+
+  /**
+   * Get DOM element.
+   * @returns {HTMLElement} DOM element.
+   */
+  getDOM() {
+    return this.dom;
+  }
+
+  /**
+   * Get current score.
+   * @returns {number} Score.
+   */
+  getScore() {
+    return this.itemList.getScore();
+  }
+
+  /**
+   * Get maximum score.
+   * @returns {number} Maximum score.
+   */
+  getMaxScore() {
+    return 1;
+  }
+
+  /**
+   * Reset checklist.
+   */
+  reset() {
+    this.wasAnswerGiven = false;
+    this.itemList.reset();
+  }
+
+  /**
+   * Set drag container for item list.
+   * @param {HTMLElement} container Container element.
+   */
+  setContainer(container) {
+    this.itemList.setContainer(container);
+  }
+
+  /**
+   * Restore state.
+   * @param {object} state State to restore.
+   * @param {object} state.itemList Item list state.
+   */
+  setCurrentState(state) {
+    this.itemList.setCurrentState(state.itemList);
+    this.toggleNoItemsMessage();
+    this.callbacks.onResized();
+  }
+}

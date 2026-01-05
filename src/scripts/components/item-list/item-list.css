@@ -1,0 +1,28 @@
+.h5p-checklist-item-list-wrapper {
+  & .h5p-checklist-item-list-instructions {
+    border: 0;
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  & .h5p-checklist-item-list {
+    color: var(--h5p-checklist-theme-text-primary);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--h5p-checklist-theme-font-size-m);
+    gap: var(--h5p-checklist-theme-spacing-xxs);
+    list-style-type: none;
+    margin-block: 0;
+    padding-inline-start: 0;
+
+    &.display-none {
+      display: none;
+    }
+  }
+}

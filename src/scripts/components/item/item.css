@@ -1,0 +1,129 @@
+.h5p-checklist-item {
+  --border-width: 2px;
+
+  display: flex;
+  flex-direction: row;
+
+  & .h5p-checklist-item-content-wrapper {
+    align-items: flex-start;
+    display: flex;
+    flex: 1 1 auto;
+    gap: var(--h5p-checklist-theme-spacing-xxs);
+    justify-content: space-between;
+    padding-inline: var(--h5p-checklist-theme-spacing-xxs);
+    min-width: 0;
+    min-height: var(--h5p-checklist-theme-font-size-l);
+
+    .h5p-checklist-item-button-remove {
+      background: none;
+      border: none;
+      border-radius: 100%;
+      cursor: pointer;
+      height: var(--h5p-checklist-theme-font-size-xl);
+      width: var(--h5p-checklist-theme-font-size-xl);
+      position: relative;
+
+      &::before {
+        content: var(--icon-fontawesome-xmark);
+        font-family: "H5PFontAwesome4", sans-serif;
+        font-size: calc(var(--h5p-checklist-theme-font-size-m) * 1.1);
+        color: var(--h5p-checklist-theme-text-secondary);
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &:hover {
+        background-color: var(--h5p-checklist-theme-contrast-cta-white);
+
+        &::before {
+          color: var(--h5p-checklist-theme-secondary-contrast-cta-hover);
+        }
+      }
+    }
+  }
+
+  &.has-handle {
+    background: var(--h5p-checklist-theme-alternative-base);
+    border: var(--border-width) solid var(--h5p-checklist-theme-alternative-base);
+    border-bottom-color: var(--h5p-checklist-theme-alternative-dark);
+    border-radius: var(--h5p-checkist-theme-border-radius-medium);
+    box-shadow: 0 1px 0 0 var(--h5p-checklist-theme-alternative-dark);
+    cursor: grab;
+
+    &::before {
+      background-color: color-mix(in srgb, var(--h5p-checklist-theme-alternative-dark), transparent 30%);
+      border-radius: var(--h5p-checklist-theme-border-radius-small) 0 0 var(--h5p-checklist-theme-border-radius-small);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--h5p-checklist-theme-alternative-dark), transparent 30%);
+      content: var(--icon-handle);
+      color: var(--h5p-checklist-theme-text-third);
+      font-family: "H5PFontAwesome4", sans-serif;
+      font-size: 1.1rem;
+      padding-top: var(--h5p-checklist-theme-spacing-xxs);
+      text-align: center;
+      width: 1.5rem;
+    }
+
+    &:hover {
+      background:var(--h5p-checklist-theme-alternative-dark);
+      border-color: var(--h5p-checklist-theme-contrast-cta-white);
+      box-shadow: 0 3px .3em 0 var(--h5p-checklist-theme-alternative-darker);
+      color: var(--h5p-checklist-theme-text-primary);
+
+      &::before {
+        background-color: var(--h5p-checklist-theme-contrast-cta-white);
+        box-shadow: 0 0 0 2px var(--h5p-checklist-theme-contrast-cta-white);
+        color: var(--h5p-checklist-theme-secondary-contrast-cta-hover);
+      }
+    }
+
+    & .h5p-checklist-item-content-wrapper {
+      padding-block: var(--h5p-checklist-theme-spacing-xxs);
+    }
+  }
+
+  &.is-dragging {
+    box-sizing: border-box;
+    cursor: grabbing;
+    height: var(--drag-height, auto);
+    left: var(--drag-left, 0px);
+    margin: 0;
+    position: fixed;
+    top: var(--drag-top, 0px);
+    width: var(--drag-width, auto);
+    z-index: 1;
+
+    .h5p-checklist-item-content-wrapper .h5p-checklist-item-button-remove {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &.highlighted {
+    background:var(--h5p-checklist-theme-alternative-dark);
+    border-color: var(--h5p-checklist-theme-contrast-cta-white);
+    box-shadow: 0 3px .3em 0 var(-h5p-checklist-theme-alternative-darker);
+    color: var(--h5p-checklist-theme-text-primary);
+
+    &::before {
+      background-color: var(--h5p-checklist-theme-contrast-cta-white);
+      box-shadow: 0 0 0 2px var(--h5p-checklist-theme-contrast-cta-white);
+      color: var(--h5p-checklist-theme-secondary-contrast-cta-hover);
+    }
+  }
+}
+
+.h5p-content.using-mouse .h5p-checklist-item:not(:hover) {
+  .h5p-checklist-item-button-remove {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.h5p-content:not(.using-mouse) .h5p-checklist-item:not(:focus-within){
+  .h5p-checklist-item-button-remove {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

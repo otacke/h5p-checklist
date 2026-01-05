@@ -1,0 +1,7 @@
+  .h5p-checklist-main {
+    background-color: var(--h5p-checklist-theme-ui-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--h5p-checklist-theme-spacing-s);
+    padding: var(--h5p-checklist-theme-spacing-s);
+  }

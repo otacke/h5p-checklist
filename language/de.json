@@ -1,0 +1,156 @@
+{
+  "semantics": [
+    {
+      "label": "Einleitungstext"
+    },
+    {
+      "label": "Elemente",
+      "entity": "Element",
+      "widgets": [
+        {
+          "label": "Standard"
+        }
+      ],
+      "field": {
+        "fields": [
+          {
+            "label": "Text"
+          },
+          {
+            "label": "Typ",
+            "description": "Wähle, ob das Element ein Kontrollkästchen enthält oder nur als Textelement zur Strukturierung dient.",
+            "options": [
+              {
+                "label": "Kontrollkästchen"
+              },
+              {
+                "label": "Segmenttitel"
+              }
+            ]
+          },
+          {
+            "label": "Standardmäßig gewählt"
+          },
+          {
+            "label": "Kann wieder abgewählt werden"
+          },
+          {
+            "label": "Kann bearbeitet werden"
+          },
+          {
+            "label": "Kann verschoben werden"
+          },
+          {
+            "label": "Kann entfernt werden"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Verhaltenseinstellungen",
+      "fields": [
+        {
+          "label": "Benutzende können eigene Kontrollkästchen hinzufügen und entfernen"
+        },
+        {
+          "label": "Benutzende können eigene Segmenttitel hinzufügen und entfernen"
+        }
+      ]
+    },
+    {
+      "label": "Bedienoberfläche",
+      "fields": [
+        {
+          "label": "Keine Elemente verfügbar",
+          "default": "Keine Elemente verfügbar"
+        },
+        {
+          "label": "Kontrollkästchen hinzufügen",
+          "default": "Kontrollkästchen hinzufügen"
+        },
+        {
+          "label": "Segmenttitel hinzufügen",
+          "default": "Segmenttitel hinzufügen"
+        },
+        {
+          "label": "Neues Kontrollkästchen",
+          "default": "Neues Kontrollkästchen"
+        },
+        {
+          "label": "Neuer Segmenttitel",
+          "default": "Neuer Segmenttitel"
+        }
+      ]
+    },
+    {
+      "label": "Texte für Barrierefreiheit",
+      "fields": [
+        {
+          "label": "Elementliste",
+          "default": "Elementliste"
+        },
+        {
+          "label": "Anweisungen zur Elementliste",
+          "default": "Mit den Pfeiltasten navigieren. Drücke die Leertaste oder Eingabetaste, um das Verschieben eines Elements zu ermöglichen. Tabbe in das Element für Aktionen."
+        },
+        {
+          "label": "Ausgewählt",
+          "default": "Ausgewählt"
+        },
+        {
+          "label": "Nicht ausgewählt",
+          "default": "Nicht ausgewählt"
+        },
+        {
+          "label": "Segmenttitel",
+          "default": "Segmenttitel"
+        },
+        {
+          "label": "Verschiebbar",
+          "default": "verschiebbar"
+        },
+        {
+          "label": "Bearbeitbar",
+          "default": "bearbeitbar"
+        },
+        {
+          "label": "Element entfernen",
+          "default": "Element entfernen"
+        },
+        {
+          "label": "Element entfernt",
+          "default": "Element entfernt"
+        },
+        {
+          "label": "Element hinzugefügt",
+          "default": "Element hinzugefügt"
+        },
+        {
+          "label": "Buttons zum Hinzufügen von Elementen",
+          "default": "Buttons zum Hinzufügen von Elementen"
+        },
+        {
+          "label": "Tastatur-Ziehen gestartet",
+          "default": "Tastatur-Ziehen gestartet. Verwende die Pfeiltasten, um das Element zu verschieben. Drücken Sie Leertaste oder Eingabetaste, um das Element abzulegen."
+        },
+        {
+          "label": "Element kann nicht weiter verschoben werden",
+          "default": "Element kann nicht weiter in diese Richtung verschoben werden."
+        },
+        {
+          "label": "Tastatur-Ziehen verschoben",
+          "description": "@target ist ein Platzhalter und wird durch den jeweiligen Wert ersetzt.",
+          "default": "Element zur Position @target verschoben."
+        },
+        {
+          "label": "Verschieben des Elements abgebrochen",
+          "default": "Verschieben des Elements abgebrochen."
+        },
+        {
+          "label": "Beschriftung bearbeitbar",
+          "default": "Beschriftung bearbeitbar"
+        }
+      ]
+    }
+  ]
+}

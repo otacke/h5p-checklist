@@ -1,0 +1,281 @@
+[
+  {
+    "name": "introductionText",
+    "type": "text",
+    "label": "Introduction text",
+    "optional": true,
+    "widget": "html",
+    "enterMode": "div",
+    "tags": [
+      "sub",
+      "sup",
+      "strong",
+      "em",
+      "p",
+      "code",
+      "u",
+      "del",
+      "a",
+      "ul",
+      "ol",
+      "hr",
+      "pre",
+      "code"
+    ],
+    "font": {
+      "size": true,
+      "color": true,
+      "background": true
+    }
+  },
+  {
+    "name": "items",
+    "type": "list",
+    "label": "Items",
+    "entity": "item",
+    "widgets": [
+      {
+        "name": "VerticalTabs",
+        "label": "Default"
+      }
+    ],
+    "field": {
+      "name": "item",
+      "type": "group",
+      "fields": [
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "label": "Type",
+          "description": "Choose whether the item is a checkable item or just a text item for structuring.",
+          "options": [
+            {
+              "value": "checkable",
+              "label": "Checkable item"
+            },
+            {
+              "value": "segment-title",
+              "label": "Segment title"
+            }
+          ],
+          "default": "checkable"
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "label": "Checked by default",
+          "widget": "showWhen",
+          "showWhen": {
+            "rules": [
+              {
+                "field": "type",
+                "equals": "checkable"
+              }
+            ]
+          }
+        },
+        {
+          "name": "canBeUnchecked",
+          "type": "boolean",
+          "label": "Can be unchecked",
+          "default": true,
+          "widget": "showWhen",
+          "showWhen": {
+            "rules": [
+              {
+                "field": "type",
+                "equals": "checkable"
+              }
+            ]
+          }
+        },
+        {
+          "name": "canBeEdited",
+          "type": "boolean",
+          "label": "Can be edited",
+          "default": false
+        },
+        {
+          "name": "canBeMoved",
+          "type": "boolean",
+          "label": "Can be moved",
+          "default": false
+        },
+        {
+          "name": "canBeRemoved",
+          "type": "boolean",
+          "label": "Can be removed",
+          "default": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "behaviour",
+    "type": "group",
+    "importance": "low",
+    "label": "Behavioural settings",
+    "fields": [
+      {
+        "name": "userCanManageItems",
+        "type": "boolean",
+        "label": "User can add and remove their own items",
+        "default": true
+      },
+      {
+        "name": "userCanManageSegmentTitles",
+        "type": "boolean",
+        "label": "User can add and remove their own segment titles",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "label": "User interface",
+    "common": true,
+    "fields": [
+      {
+        "name": "noItemsAvailable",
+        "type": "text",
+        "label": "No items available",
+        "default": "No items available"
+      },
+      {
+        "name": "addCheckboxItem",
+        "type": "text",
+        "label": "Add checkbox",
+        "default": "Add checkbox"
+      },
+      {
+        "name": "addSegmentTitle",
+        "type": "text",
+        "label": "Add segment title",
+        "default": "Add segment title"
+      },
+      {
+        "name": "newItem",
+        "type": "text",
+        "label": "New checkbox",
+        "default": "New checkbox"
+      },
+      {
+        "name": "newSegmentTitle",
+        "type": "text",
+        "label": "New segment title",
+        "default": "New segment title"
+      }
+    ]
+  },
+  {
+    "name": "a11y",
+    "type": "group",
+    "label": "Accessibility texts",
+    "common": true,
+    "fields": [
+      {
+        "name": "itemList",
+        "type": "text",
+        "label": "Item list",
+        "default": "Item list"
+      },
+      {
+        "name": "itemListInstructions",
+        "type": "text",
+        "label": "Item list instructions",
+        "default": "Navigate with arrow keys. Press space or enter to toggle moving an item. Tab into item for actions."
+      },
+      {
+        "name": "checked",
+        "type": "text",
+        "label": "Checked",
+        "default": "Checked"
+      },
+      {
+        "name": "unchecked",
+        "type": "text",
+        "label": "Unchecked",
+        "default": "Unchecked"
+      },
+      {
+        "name": "segmentTitle",
+        "type": "text",
+        "label": "Segment title",
+        "default": "Segment title"
+      },
+      {
+        "name": "draggable",
+        "type": "text",
+        "label": "Draggable",
+        "default": "draggable"
+      },
+      {
+        "name": "editable",
+        "type": "text",
+        "label": "Editable",
+        "default": "editable"
+      },
+      {
+        "name": "removeItem",
+        "type": "text",
+        "label": "Remove item",
+        "default": "Remove item"
+      },
+      {
+        "name": "itemRemoved",
+        "type": "text",
+        "label": "Item removed",
+        "default": "Item removed"
+      },
+      {
+        "name": "itemAdded",
+        "type": "text",
+        "label": "Item added",
+        "default": "Item added"
+      },
+      {
+        "name": "addItemButtons",
+        "type": "text",
+        "label": "Buttons to add items",
+        "default": "Buttons to add items"
+      },
+      {
+        "name": "keyboardDragStarted",
+        "type": "text",
+        "label": "Keyboard drag started",
+        "default": "Keyboard drag started. Use arrow keys to move the item. Press space or enter to drop the item."
+      },
+      {
+        "name": "keyboardDragLimitReached",
+        "type": "text",
+        "label": "Item cannot be moved further",
+        "default": "Cannot move the item further in that direction."
+      },
+      {
+        "name": "keyboardDragMoved",
+        "type": "text",
+        "label": "Item moved",
+        "description": "@target is a placeholder and will be replaced with the respective value.",
+        "default": "Item moved to position @target."
+      },
+      {
+        "name": "keyboardDragCanceled",
+        "type": "text",
+        "label": "Moving item canceled",
+        "default": "Moving of item canceled."
+      },
+      {
+        "name": "editableLabel",
+        "type": "text",
+        "label": "Editable label",
+        "default": "Editable label"
+      }
+    ]
+  }
+]
