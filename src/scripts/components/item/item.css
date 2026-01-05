@@ -83,6 +83,14 @@
     }
   }
 
+  &:not(.has-handle) {
+    border-block: 1px solid transparent;
+
+    &:hover {
+      border-block: 1px solid var(--h5p-checklist-theme-alternative-dark);
+    }
+  }
+
   &.is-dragging {
     box-sizing: border-box;
     cursor: grabbing;
