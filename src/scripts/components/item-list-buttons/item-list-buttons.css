@@ -1,5 +1,6 @@
 .h5p-checklist-item-list-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--h5p-checklist-theme-spacing-s);
   container-type: inline-size;
   user-select: none;
