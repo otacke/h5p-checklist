@@ -74,7 +74,7 @@ export default class Label {
    * @param {boolean} isTabbable If true, label is tabbable.
    */
   setTabbable(isTabbable) {
-    this.dom.setAttribute('tabindex', isTabbable ? '0' : '-1');
+    this.dom.setAttribute('tabindex', (this.params.canBeEdited && isTabbable) ? '0' : '-1');
   }
 
   /**
