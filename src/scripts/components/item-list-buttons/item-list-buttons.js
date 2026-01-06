@@ -28,29 +28,31 @@ export default class ItemListButtons {
     this.dom.setAttribute('aria-label', this.params.dictionary?.get('a11y.addItemButtons'));
 
     if (this.params.canAddItems) {
-      this.buttonAddItem = new H5P.JoubelUI.createButton({
-        class: 'button-add-item h5p-theme-plus',
-        html: this.params.dictionary.get('l10n.addCheckboxItem'),
-        on: {
-          click: () => {
-            this.callbacks.onAddItemRequested();
-          },
+      this.buttonAddItem = new H5P.Components.Button({
+        styleType: 'primary',
+        label: this.params.dictionary.get('l10n.addCheckboxItem'),
+        icon: 'plus',
+        a11yLabel: this.params.dictionary.get('l10n.addCheckboxItem'),
+        classes: ['button-add-item'],
+        onClick: () => {
+          this.callbacks.onAddItemRequested();
         },
-      }).get(0);
+      });
 
       this.dom.appendChild(this.buttonAddItem);
     }
 
     if (this.params.canAddSegmentTitles) {
-      this.buttonAddSegmentTitle = new H5P.JoubelUI.createButton({
-        class: 'button-add-segment-title h5p-theme-plus',
-        html: this.params.dictionary.get('l10n.addSegmentTitle'),
-        on: {
-          click: () => {
-            this.callbacks.onAddSegmentTitleRequested();
-          },
+      this.buttonAddSegmentTitle = new H5P.Components.Button({
+        styleType: 'primary',
+        label: this.params.dictionary.get('l10n.addSegmentTitle'),
+        icon: 'plus',
+        a11yLabel: this.params.dictionary.get('l10n.addSegmentTitle'),
+        classes: ['button-add-segment-title'],
+        onClick: () => {
+          this.callbacks.onAddSegmentTitleRequested();
         },
-      }).get(0);
+      });
 
       this.dom.appendChild(this.buttonAddSegmentTitle);
     }

@@ -40,6 +40,11 @@ export default class ItemView {
 
     this.dom.addEventListener('focusin', () => {
       this.setContentTabbable(true);
+      this.dom.classList.add('highlighted');
+    });
+
+    this.dom.addEventListener('focusout', () => {
+      this.dom.classList.remove('highlighted');
     });
 
     if (this.params.canBeMoved) {

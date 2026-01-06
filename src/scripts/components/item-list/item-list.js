@@ -50,8 +50,9 @@ export default class ItemList {
 
     this.setupEventListeners();
 
-    // TODO: Only if there are items
-    this.setCurrentItemIndex(0);
+    if (this.items.length) {
+      this.setCurrentItemIndex(0);
+    }
 
     this.handlePendingMouseMove = this.handlePendingMouseMove.bind(this);
     this.handlePendingPointerUp = this.handlePendingPointerUp.bind(this);
@@ -135,10 +136,6 @@ export default class ItemList {
    * Setup event listeners.
    */
   setupEventListeners() {
-    if (!this.items.some((item) => item.params.canBeMoved)) {
-      return;
-    }
-
     this.itemList.addEventListener('dragstart', (event) => {
       event.preventDefault(); // Disable native dragging, fixes edge case
     });

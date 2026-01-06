@@ -1,7 +1,8 @@
 .h5p-checklist-item-checkbox-wrapper {
   display: flex;
   flex-direction: row;
-  gap: var(--h5p-checklist-theme-spacing-xxs);
+  gap: var(--h5p-theme-spacing-xxs, 0.3rem);
+  width: 100%;
 
   & .h5p-checklist-item-checkbox {
     cursor: pointer;
@@ -9,25 +10,24 @@
     font-weight: 600;
 
     &:before {
-      font-family: "H5PFontAwesome4", sans-serif;
-      margin-inline: calc( var(--h5p-checklist-theme-spacing-xxs) / 2);
-      width: 1.5ch;
+      font-family: h5p-theme, sans-serif;
+      margin-inline: calc( var(--h5p-theme-spacing-xxs, 0.3rem) / 2);
     }
 
     &:not(.disabled)::before {
-      color: var(--h5p-checklist-theme-text-primary);
+      color: var(--h5p-theme-text-primary, #101729);
     }
 
     &.disabled::before {
-      color: var(--h5p-checklist-theme-text-third);
+      color: var(--h5p-theme-text-third, #737373);
     }
 
-    &[aria-checked="false"]:before {
-      content: "\f096";
+    &[aria-checked="false"]::before {
+      content: "\e90b";
     }
 
     &[aria-checked="true"]::before {
-      content: "\f046";
+      content: "\e90c";
     }
   }
 
