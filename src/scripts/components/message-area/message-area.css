@@ -1,5 +1,5 @@
 .h5p-checklist-message-area {
-  font-size: var(--h5p-checklist-theme-font-size-m);
+  font-size: var(--h5p-theme-font-size-m, 1rem);
 
   &.display-none {
     display: none;

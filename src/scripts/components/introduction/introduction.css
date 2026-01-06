@@ -1,6 +1,6 @@
 .h5p-checklist-introduction {
-  font-size: var(--h5p-checklist-theme-font-size-l);
-  color: var(--h5p-checklist-theme-text-primary);
+  font-size: var(--h5p-theme-font-size-xl, 1.25rem);
+  color: var(--h5p-theme-text-primary, #101729);
   font-weight: 600;
 
   & p:first-child {

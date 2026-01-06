@@ -2,8 +2,8 @@
   "title": "Checklist",
   "description": "Let users keep track of things",
   "majorVersion": 1,
-  "minorVersion": 0,
-  "patchVersion": 3,
+  "minorVersion": 1,
+  "patchVersion": 0,
   "runnable": 1,
   "author": "Oliver Tacke",
   "license": "MIT",
@@ -32,9 +32,9 @@
       "minorVersion": 5
     },
     {
-      "machineName": "H5P.JoubelUI",
+      "machineName": "H5P.Components",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 0
     }
   ],
   "editorDependencies": [
