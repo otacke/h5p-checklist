@@ -85,19 +85,11 @@
   &:not(.has-handle) {
     border-block: 1px solid transparent;
 
-    &:hover {
-      border-block: 1px solid var(--h5p-theme-alternative-dark, #dbe5f5);
-    }
-  }
-
-  &:not(.has-handle) {
-    border-block: 1px solid transparent;
-
     &:has(.h5p-checklist-item-checkbox-wrapper),
     &:has(.h5p-checklist-item-button-remove),
     &:has(.h5p-checklist-item-label[role="textbox"]) {
       &:hover {
-        border-block: 1px solid var(--h5p-checklist-theme-alternative-dark);
+        border-block: 1px solid var(--h5p-theme-alternative-dark, #dbe5f5);
       }
     }
   }
