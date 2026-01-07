@@ -83,7 +83,9 @@
     }
   }
 
-  &:not(.has-handle) {
+  &:not(.has-handle):has(.h5p-checklist-item-checkbox-wrapper),
+  &:not(.has-handle):has(.h5p-checklist-item-button-remove),
+  &:not(.has-handle):has(.h5p-checklist-item-label[role="textbox"]) {
     border-block: 1px solid transparent;
 
     &:hover {
