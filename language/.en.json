@@ -79,6 +79,18 @@
         {
           "label": "New segment title",
           "default": "New segment title"
+        },
+        {
+          "label": "Copy to clipboard",
+          "default": "Copy"
+        },
+        {
+          "label": "Checklist was copied to clipboard",
+          "default": "Checklist was copied to clipboard"
+        },
+        {
+          "label": "Could not copy checklist to clipboard",
+          "default": "Could not copy checklist to clipboard"
         }
       ]
     },
@@ -149,6 +161,10 @@
         {
           "label": "Editable label",
           "default": "Editable label"
+        },
+        {
+          "label": "Copy to clipboard",
+          "default": "Copy items clipboard"
         }
       ]
     }

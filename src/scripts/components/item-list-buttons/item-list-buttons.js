@@ -10,6 +10,7 @@ export default class ItemListButtons {
    * @param {object} callbacks Callbacks.
    * @param {function} [callbacks.onAddItemRequested] Called when the user requests to add an item.
    * @param {function} [callbacks.onAddSegmentTitleRequested] Called when the user requests to add a segment title.
+   * @param {function} [callbacks.onCopyRequested] Called when the user requests to copy items.
    */
   constructor(params = {}, callbacks = {}) {
     this.params = extend({
@@ -22,13 +23,15 @@ export default class ItemListButtons {
       onAddSegmentTitleRequested: () => {},
     }, callbacks);
 
+    this.buttons = new Map();
+
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-checklist-item-list-buttons');
     this.dom.setAttribute('role', 'group');
     this.dom.setAttribute('aria-label', this.params.dictionary?.get('a11y.addItemButtons'));
 
     if (this.params.canAddItems) {
-      this.buttonAddItem = new H5P.Components.Button({
+      this.buttons.set('addItem', new H5P.Components.Button({
         styleType: 'primary',
         label: this.params.dictionary.get('l10n.addCheckboxItem'),
         icon: 'plus',
@@ -37,13 +40,13 @@ export default class ItemListButtons {
         onClick: () => {
           this.callbacks.onAddItemRequested();
         },
-      });
+      }));
 
-      this.dom.appendChild(this.buttonAddItem);
+      this.dom.appendChild(this.buttons.get('addItem'));
     }
 
     if (this.params.canAddSegmentTitles) {
-      this.buttonAddSegmentTitle = new H5P.Components.Button({
+      this.buttons.set('addSegmentTitle', new H5P.Components.Button({
         styleType: 'primary',
         label: this.params.dictionary.get('l10n.addSegmentTitle'),
         icon: 'plus',
@@ -52,9 +55,24 @@ export default class ItemListButtons {
         onClick: () => {
           this.callbacks.onAddSegmentTitleRequested();
         },
-      });
+      }));
 
-      this.dom.appendChild(this.buttonAddSegmentTitle);
+      this.dom.appendChild(this.buttons.get('addSegmentTitle'));
+    }    
+
+    if (this.params.canCopy) {
+      this.buttons.set('copy', new H5P.Components.Button({
+        styleType: 'primary',
+        label: this.params.dictionary.get('l10n.copyToClipboard'),
+        icon: 'copy',
+        a11yLabel: this.params.dictionary.get('l10n.copyToClipboard'),
+        classes: ['button-copy'],
+        onClick: () => {
+          this.callbacks.onCopyRequested();
+        },
+      }));
+
+      this.dom.appendChild(this.buttons.get('copy'));
     }
   }
 
@@ -64,5 +82,14 @@ export default class ItemListButtons {
    */
   getDOM() {
     return this.dom;
+  }
+
+  /**
+   * Get the DOM element of a specific button.
+   * @param {string} id Id of button.
+   * @returns {HTMLElement} DOM element of button, or undefined if button doesn't exist.
+   */
+  getButtonDOM(id) {
+    return this.buttons.get(id);
   }
 }

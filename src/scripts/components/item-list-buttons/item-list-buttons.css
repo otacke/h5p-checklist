@@ -11,4 +11,11 @@
       font-family: h5p-theme, sans-serif;
     }
   }
+
+  .button-copy {
+    &.h5p-theme-copy::before {
+      content: var(--icon-h5p-theme-copy, "\e912");
+      font-family: h5p-theme, sans-serif;
+    }
+  }
 }

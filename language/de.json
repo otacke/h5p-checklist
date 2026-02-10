@@ -79,6 +79,18 @@
         {
           "label": "Neuer Segmenttitel",
           "default": "Neuer Segmenttitel"
+        },
+        {
+          "label": "In Zwischenablage kopieren",
+          "default": "Kopieren"
+        },
+        {
+          "label": "Die Liste wurde in die Zwischenablage kopiert",
+          "default": "Die Liste wurde in die Zwischenablage kopiert"
+        },
+        {
+          "label": "Die Liste konnte nicht in die Zwischenablage kopiert werden",
+          "default": "Die Liste konnte nicht in die Zwischenablage kopiert werden"
         }
       ]
     },
@@ -149,6 +161,10 @@
         {
           "label": "Beschriftung bearbeitbar",
           "default": "Beschriftung bearbeitbar"
+        },
+        {
+          "label": "In Zwischenablage kopieren",
+          "default": "In Zwischenablage kopieren"
         }
       ]
     }

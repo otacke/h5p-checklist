@@ -1,6 +1,7 @@
 .h5p-checklist {
   --icon-h5p-theme-checkbox-unchecked: "\e90b";
   --icon-h5p-theme-checkbox-checked: "\e90c";
+  --icon-h5p-theme-copy: "\e912";
   --icon-h5p-theme-handle: "\e90f";
   --icon-h5p-theme-plus: "\e919";
   --icon-fontawesome-xmark: "\f00d";
