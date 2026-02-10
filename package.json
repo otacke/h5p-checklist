@@ -1,6 +1,6 @@
 {
   "name": "h5p-checklist",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Let users keep track of things",
   "private": true,
   "scripts": {
