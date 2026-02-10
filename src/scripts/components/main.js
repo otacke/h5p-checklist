@@ -6,6 +6,9 @@ import Screenreader from '@services/screenreader.js';
 import { extend } from '@services/util.js';
 import './main.css';
 
+/** @constant {number} TOAST_OFFSET_VERTICAL_PX Vertial offset from element to toast message. */
+const TOAST_OFFSET_VERTICAL_PX = 5;
+
 /**
  * Main checklist wrapper.
  * @class
@@ -32,6 +35,11 @@ export default class Main {
 
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-checklist-main');
+    this.dom.addEventListener('keydown', (event) => {
+      if (event.ctrlKey && event.key === 'c') {
+        this.copyItemsToClipboard();
+      } 
+    });
 
     // TODO: Get from previous state
     this.wasAnswerGiven = false;
@@ -70,6 +78,7 @@ export default class Main {
     this.itemListButtons = new ItemListButtons({
       canAddItems: params.behaviour.userCanManageItems,
       canAddSegmentTitles: params.behaviour.userCanManageSegmentTitles,
+      canCopy: !!navigator.clipboard,
       dictionary: this.params.dictionary,
     }, {
       onAddItemRequested: () => {
@@ -77,6 +86,9 @@ export default class Main {
       },
       onAddSegmentTitleRequested: () => {
         this.itemList.addItem({ type: 'segment-title', text: this.params.dictionary.get('l10n.newSegmentTitle') });
+      },
+      onCopyRequested: () => {
+        this.copyItemsToClipboard();
       },
     });
     this.dom.appendChild(this.itemListButtons.getDOM());
@@ -101,6 +113,56 @@ export default class Main {
         this.callbacks.onCompleted();
       }
     }
+  }
+
+  /**
+   * Copy list items to clipboard.
+   * @async 
+   */
+  async copyItemsToClipboard() {
+    if (!navigator.clipboard) {
+      console.warn('Clipboard API not supported');
+      return;
+    }
+
+    const items = this.itemList.getCurrentState().items;
+
+    const itemsText = items.map((item) => {
+      if (item.type === 'checkable') {
+        return `${item.checked ? '[x]' : '[ ]'} ${item.text}`;
+      }
+      else if (item.type === 'segment-title') {
+        return `## ${item.text}`;
+      }
+
+      return item.text;
+    }).join('\n');
+
+    let writingToClipboardWasSuccessful = true;
+    try {
+      await navigator.clipboard.writeText(itemsText);
+    }
+    catch (error) {
+      writingToClipboardWasSuccessful = false;
+    }
+
+    const message = (writingToClipboardWasSuccessful === true) ?
+      this.params.dictionary.get('l10n.copyToClipboardSuccess') :
+      this.params.dictionary.get('l10n.copyToClipboardError');
+
+    Screenreader.read(message);
+
+    const buttonCopyDOM = this.itemListButtons.getButtonDOM('copy');
+    if (!buttonCopyDOM) {
+      return;
+    }
+
+    H5P.attachToastTo(buttonCopyDOM, message, { position: {
+      horizontal: 'centered',
+      noOverflowRight: true,
+      offsetVertical: TOAST_OFFSET_VERTICAL_PX,
+      vertical: 'above',
+    } });
   }
 
   /**

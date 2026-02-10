@@ -170,6 +170,24 @@
         "type": "text",
         "label": "New segment title",
         "default": "New segment title"
+      },
+      {
+        "name": "copyToClipboard",
+        "type": "text",
+        "label": "Copy to clipboard",
+        "default": "Copy"
+      },
+      {
+        "name": "copyToClipboardSuccess",
+        "type": "text",
+        "label": "Checklist was copied to clipboard",
+        "default": "Checklist was copied to clipboard"
+      },
+      {
+        "name": "copyToClipboardError",
+        "type": "text",
+        "label": "Could not copy checklist to clipboard",
+        "default": "Could not copy checklist to clipboard"
       }
     ]
   },
@@ -275,6 +293,12 @@
         "type": "text",
         "label": "Editable label",
         "default": "Editable label"
+      },
+      {
+        "name": "copyToClipboard",
+        "type": "text",
+        "label": "Copy to clipboard",
+        "default": "Copy items clipboard"
       }
     ]
   }

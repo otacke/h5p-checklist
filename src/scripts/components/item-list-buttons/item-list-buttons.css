@@ -14,4 +14,13 @@
       font-family: "H5PFontAwesome4", sans-serif;
     }
   }
+
+  .button-copy {
+    margin: 0;
+    
+    &.h5p-theme-copy::before {
+      content: var(--icon-fontawesome-copy, "\f0c5");
+      font-family: "H5PFontAwesome4", sans-serif;
+    }
+  }
 }

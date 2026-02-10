@@ -10,6 +10,7 @@ export default class ItemListButtons {
    * @param {object} callbacks Callbacks.
    * @param {function} [callbacks.onAddItemRequested] Called when the user requests to add an item.
    * @param {function} [callbacks.onAddSegmentTitleRequested] Called when the user requests to add a segment title.
+   * @param {function} [callbacks.onCopyRequested] Called when the user requests to copy items.
    */
   constructor(params = {}, callbacks = {}) {
     this.params = extend({
@@ -20,7 +21,10 @@ export default class ItemListButtons {
     this.callbacks = extend({
       onAddItemRequested: () => {},
       onAddSegmentTitleRequested: () => {},
+      onCopyRequested: () => {},
     }, callbacks);
+
+    this.buttons = new Map();
 
     this.dom = document.createElement('div');
     this.dom.classList.add('h5p-checklist-item-list-buttons');
@@ -28,7 +32,7 @@ export default class ItemListButtons {
     this.dom.setAttribute('aria-label', this.params.dictionary?.get('a11y.addItemButtons'));
 
     if (this.params.canAddItems) {
-      this.buttonAddItem = new H5P.JoubelUI.createButton({
+      this.buttons.set('addItem', new H5P.JoubelUI.createButton({
         class: 'button-add-item h5p-theme-plus',
         html: this.params.dictionary.get('l10n.addCheckboxItem'),
         on: {
@@ -36,13 +40,13 @@ export default class ItemListButtons {
             this.callbacks.onAddItemRequested();
           },
         },
-      }).get(0);
+      }).get(0));
 
-      this.dom.appendChild(this.buttonAddItem);
+      this.dom.appendChild(this.buttons.get('addItem'));
     }
 
     if (this.params.canAddSegmentTitles) {
-      this.buttonAddSegmentTitle = new H5P.JoubelUI.createButton({
+      this.buttons.set('addSegmentTitle', new H5P.JoubelUI.createButton({
         class: 'button-add-segment-title h5p-theme-plus',
         html: this.params.dictionary.get('l10n.addSegmentTitle'),
         on: {
@@ -50,9 +54,21 @@ export default class ItemListButtons {
             this.callbacks.onAddSegmentTitleRequested();
           },
         },
-      }).get(0);
+      }).get(0));
+      this.dom.appendChild(this.buttons.get('addSegmentTitle'));
+    }
 
-      this.dom.appendChild(this.buttonAddSegmentTitle);
+    if (this.params.canCopy) {
+      this.buttons.set('copy', new H5P.JoubelUI.createButton({
+        class: 'button-copy h5p-theme-copy',
+        html: this.params.dictionary.get('l10n.copyToClipboard'),
+        on: {
+          click: () => {
+            this.callbacks.onCopyRequested();
+          },
+        },
+      }).get(0));
+      this.dom.appendChild(this.buttons.get('copy'));
     }
   }
 
@@ -62,5 +78,14 @@ export default class ItemListButtons {
    */
   getDOM() {
     return this.dom;
+  }
+
+  /**
+   * Get the DOM element of a specific button.
+   * @param {string} id Id of button.
+   * @returns {HTMLElement} DOM element of button, or undefined if button doesn't exist.
+   */
+  getButtonDOM(id) {
+    return this.buttons.get(id);
   }
 }
