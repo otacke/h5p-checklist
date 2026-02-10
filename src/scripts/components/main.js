@@ -41,7 +41,6 @@ export default class Main {
       } 
     });
 
-    // TODO: Get from previous state    
     this.wasAnswerGiven = false;
 
     const introduction = new Introduction({ text: params.introductionText });
