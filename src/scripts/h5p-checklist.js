@@ -63,7 +63,9 @@ export default class Checklist extends H5P.EventDispatcher {
       },
     );
 
-    this.setCurrentState(this.previousState);
+    if (Object.keys(this.previousState).length) {
+      this.setCurrentState(this.previousState);
+    }
   }
 
   /**

@@ -38,22 +38,21 @@ export default class Main {
     this.dom.addEventListener('keydown', (event) => {
       if (event.ctrlKey && event.key === 'c') {
         this.copyItemsToClipboard();
-      } 
+      }
     });
 
-    // TODO: Get from previous state
     this.wasAnswerGiven = false;
 
-    const introduction = new Introduction({ text: params.introductionText });
+    const introduction = new Introduction({ text: this.params.introductionText });
     this.dom.appendChild(introduction.getDOM());
 
     this.itemList = new ItemList(
       {
-        items: params.items,
+        items: this.params.items,
         dictionary: this.params.dictionary,
         behavior: {
-          userCanManageItems: params.behaviour.userCanManageItems,
-          userCanManageSegmentTitles: params.behaviour.userCanManageSegmentTitles,
+          userCanManageItems: this.params.behaviour.userCanManageItems,
+          userCanManageSegmentTitles: this.params.behaviour.userCanManageSegmentTitles,
         },
       },
       {
@@ -76,8 +75,8 @@ export default class Main {
     this.dom.appendChild(this.messageArea.getDOM());
 
     this.itemListButtons = new ItemListButtons({
-      canAddItems: params.behaviour.userCanManageItems,
-      canAddSegmentTitles: params.behaviour.userCanManageSegmentTitles,
+      canAddItems: this.params.behaviour.userCanManageItems,
+      canAddSegmentTitles: this.params.behaviour.userCanManageSegmentTitles,
       canCopy: !!navigator.clipboard,
       dictionary: this.params.dictionary,
     }, {
@@ -117,7 +116,7 @@ export default class Main {
 
   /**
    * Copy list items to clipboard.
-   * @async 
+   * @async
    */
   async copyItemsToClipboard() {
     if (!navigator.clipboard) {
