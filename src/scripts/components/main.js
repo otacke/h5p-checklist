@@ -243,6 +243,7 @@ export default class Main {
    * @param {object} state.itemList Item list state.
    */
   setCurrentState(state) {
+    this.wasAnswerGiven = true;
     this.itemList.setCurrentState(state.itemList);
     this.toggleNoItemsMessage();
     this.callbacks.onResized();
