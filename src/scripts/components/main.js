@@ -38,7 +38,7 @@ export default class Main {
     this.dom.addEventListener('keydown', (event) => {
       if (event.ctrlKey && event.key === 'c') {
         this.copyItemsToClipboard();
-      } 
+      }
     });
 
     this.wasAnswerGiven = false;
@@ -116,7 +116,7 @@ export default class Main {
 
   /**
    * Copy list items to clipboard.
-   * @async 
+   * @async
    */
   async copyItemsToClipboard() {
     if (!navigator.clipboard) {
@@ -243,6 +243,7 @@ export default class Main {
    * @param {object} state.itemList Item list state.
    */
   setCurrentState(state) {
+    this.wasAnswerGiven = true;
     this.itemList.setCurrentState(state.itemList);
     this.toggleNoItemsMessage();
     this.callbacks.onResized();
