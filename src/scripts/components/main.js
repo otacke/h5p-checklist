@@ -128,7 +128,7 @@ export default class Main {
 
     const itemsText = items.map((item) => {
       if (item.type === 'checkable') {
-        return `${item.checked ? '[x]' : '[ ]'} ${item.text}`;
+        return `${item.checked ? '- [x]' : '- [ ]'} ${item.text}`;
       }
       else if (item.type === 'segment-title') {
         return `## ${item.text}`;
